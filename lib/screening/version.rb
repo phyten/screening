@@ -1,0 +1,3 @@
+module Screening
+  VERSION = "0.0.1"
+end
