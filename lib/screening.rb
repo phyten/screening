@@ -73,16 +73,7 @@ end
 
 module Screening
   class Statistics < Hash
-    def favorite_percentage
-      self[__method__] = self.pageview.to_i != 0 ? (self.favorite.to_f/self.pageview.to_f).to_f * 100.0 : 0
-      self[__method__]      
-    end
-    def raters_percentage
-      self[__method__] = self.pageview.to_i != 0 ? (self.raters.to_f/self.pageview.to_f).to_f * 100.0 : 0
-      self[__method__]
-    end
     class << self
-      # 特異クラス内に、特異メソッド（クラスメソッド）を追加している。
       def attr_hash(method_hash)
         define_method(method_hash) do
           self[method_hash]
@@ -102,14 +93,5 @@ module Screening
         __send__(method_id_chopped)
       end
     end
-    attr_hash :id
-    attr_hash :addr
-    attr_hash :title
-    attr_hash :content
-    attr_hash :pageview
-    attr_hash :favorite
-    attr_hash :average
-    attr_hash :raters
-    attr_hash :seconds
   end
 end
