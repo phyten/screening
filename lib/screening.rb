@@ -60,7 +60,7 @@ module Screening
       self.class_eval do
         attr_accessor grade
       end
-      self.__send__("#{grade}=", ScreeningManager::Data.new) if self.__send__(grade).nil?
+      self.__send__("#{grade}=", Screening::Data.new) if self.__send__(grade).nil?
       self.each do |element|
         if block.call(element.__send__(target))
           self.__send__(grade).push(element)
