@@ -25,6 +25,7 @@ end
 
 module Screening
   class Data < Array
+    # FIXME: add a method of garbage to this class
     include ArrayToSelfConvert
     def start
       self.push(Screening::Statistics.new)
