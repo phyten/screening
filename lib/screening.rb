@@ -82,8 +82,7 @@ module Screening
           self[method_hash] = value
         end
       end
-    end
-    
+    end    
     def method_missing(method_id, *args, &block)
       method_id_chopped = method_id =~ /\=/ ? method_id.to_s.chop.to_sym : method_id
       self.class.attr_hash method_id_chopped
