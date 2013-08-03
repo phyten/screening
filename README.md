@@ -6,15 +6,11 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'screening'
+    gem 'screening', :git => 'git://github.com/phyten/screening.git'
 
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install screening
 
 ## Usage
 
