@@ -23,6 +23,25 @@ module ArrayToSelfConvert
   attr_accessor :deep_clone
 end
 
+module HashToSelfConvert
+  def self.included(klass)
+    methods = ::Hash.public_instance_methods(true) - ::Kernel.public_instance_methods(false)
+    methods |= ["to_s","to_a","inspect","==","=~","==="]
+    methods.each do |method|
+      define_method(method) do |*args, &block|
+        res = super(*args, &block)
+        if res.class == Hash && method != 'to_a'
+          cloned = deep_clone ? Marshal.load(Marshal.dump(self)) : self.dup
+          cloned.clear.concat(res)
+        else
+          res
+        end
+      end
+    end
+  end
+  attr_accessor :deep_clone
+end
+
 module Screening
   class Data < Array
     # FIXME: add a method of garbage to this class
