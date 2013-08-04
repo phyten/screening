@@ -58,7 +58,7 @@ module Screening
       end
     end
     def classify(grade, target, block)
-      self.class_eval do
+      self.class.class_eval do
         attr_accessor grade
       end
       self.__send__("#{grade}=", Screening::Data.new) if self.__send__(grade).nil?
