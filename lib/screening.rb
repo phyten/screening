@@ -69,6 +69,19 @@ module Screening
       end
       self.__send__(grade).uniq!
     end
+    def push_with_statistics(*args)
+      # override
+      args.each do |arg|
+        if arg.is_a? Hash
+          self.push_without_statistics(Screening::Statistics.new.merge!(arg))
+        else
+          self.push_without_statistics(arg)
+        end
+      end
+      return self
+    end
+    alias push_without_statistics push
+    alias push push_with_statistics
   end
 end
 
