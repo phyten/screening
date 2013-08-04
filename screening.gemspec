@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', ['>= 0']
   spec.add_development_dependency 'rspec', ['>= 0']
   spec.add_development_dependency 'rdoc', ['>= 0']
+  spec.add_development_dependency 'pry'
 
   
 end
