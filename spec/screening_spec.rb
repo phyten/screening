@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-<<<<<<< HEAD
 describe Screening do
   before do    
     @data = Screening::Data.new    
@@ -48,8 +47,3 @@ describe Screening do
     end
   end
 end
-=======
-# describe MyGem do
-#   it { should be_true }
-# end
->>>>>>> 462efdf9364fff9c0d1f2b986a20f23e02861367
