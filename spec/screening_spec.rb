@@ -6,15 +6,15 @@ describe Screening do
     @data.start do |element|
       element.title        = "fake"
       element.pageview     = 10000
-    end    
+    end
     @data.start do |element|
       element.title        = "good"
       element.pageview     = 10000
-    end    
+    end
     @data.start do |element|
       element.title        = "good"
       element.pageview     = 0
-    end    
+    end
     @data.start do |element|
       element.title        = "soso"
       element.pageview     = 10000
