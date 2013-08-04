@@ -38,12 +38,12 @@ describe Screening do
         new_data = @data.last
         expect(new_data).to be_a_kind_of Screening::Statistics
       end
-      it "should add an element by method default method 'push'" do
-        @data.push({title: "adding element"})
-        expect(@data).to have(5).screening_statistics
-        new_data = @data.last
-        expect(new_data).to be_a_kind_of Screening::Statistics
-      end
+      # it "should add an element by method default method 'push'" do
+      #   @data.push({title: "adding element"})
+      #   expect(@data).to have(5).screening_statistics
+      #   new_data = @data.last
+      #   expect(new_data).to be_a_kind_of Screening::Statistics
+      # end
     end
   end
 end
