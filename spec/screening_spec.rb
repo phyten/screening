@@ -49,5 +49,13 @@ describe Screening do
       new_data = @data.last
       expect(new_data).to be_a_kind_of Screening::Statistics
     end
+    it "should not have element except Screening::Statistics" do
+      lambda do
+        @data.push("string")
+      end.should raise_error "You cannot add element except Hash(And this Hash transform Screening::Statistics automatically.)."
+      lambda do
+        @data.push({test: "the test"})
+      end.should_not raise_error
+    end
   end
 end
