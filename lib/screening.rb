@@ -68,7 +68,7 @@ module Screening
         end
       end
       self.__send__(grade).uniq!
-    end    
+    end
   end
 end
 
