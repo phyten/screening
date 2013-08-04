@@ -13,16 +13,20 @@ describe Screening do
     end
     @data.start do |element|
       element.title        = "good"
-      element.pageview     = 0
+      element.pageview     = 5000
     end
     @data.start do |element|
       element.title        = "soso"
-      element.pageview     = 10000
+      element.pageview     = 300
     end
   end
   describe "Screening::Data" do
     it "should be Screening::Data" do
       expect(@data).to be_a_kind_of Screening::Data
+    end
+    it "should be able to have categories" do
+      @data.classify(:high, :pageview, lambda{|e| e > 1000 })
+      pp @data.high
     end
   end
   describe "Screening::Statistics" do
