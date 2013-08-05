@@ -1,6 +1,6 @@
 # Screening
 
-TODO: Write a gem description
+This library lets you collect, omit and classify data so easily.
 
 ## Installation
 
