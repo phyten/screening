@@ -26,7 +26,7 @@ write down:
        element.title   = "title2"
        element.content = "content2"
     end
-    p data                      #  => [{:title=>"title1", :content=>"content1"}, {:title=>"title2", :content=>"content2"}]
+    p data   #  => [{:title=>"title1", :content=>"content1"}, {:title=>"title2", :content=>"content2"}]
 
 ## Contributing
 
