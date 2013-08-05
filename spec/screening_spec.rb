@@ -56,5 +56,9 @@ describe Screening do
         @data.push({test: "the test"})
       end.should_not raise_error
     end
+    it "should omit elements by method 'omit'" do
+      @data.omit(:title, lambda{|e| e == "fake"})
+      expect(@data).to have(3).screening_statistics
+    end
   end
 end
