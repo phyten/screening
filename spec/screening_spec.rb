@@ -26,7 +26,6 @@ describe Screening do
     end
     it "should be able to have categories" do
       @data.classify(:high, :pageview, lambda{|e| e > 1000 })
-      pp @data.high
     end
   end
   describe "Screening::Statistics" do
