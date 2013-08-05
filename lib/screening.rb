@@ -75,7 +75,7 @@ module Screening
         if arg.is_a? Hash
           self.push_without_statistics(Screening::Statistics.new.merge!(arg))
         else
-          raise "You cannot add element except Hash(And this Hash transform Screening::Statistics automatically.)."
+          raise "You cannot add elements except Hash(And this Hash transform Screening::Statistics automatically.)."
         end
       end
       return self
