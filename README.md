@@ -16,16 +16,16 @@ And then execute:
 
 ## Usage
 
-   data = Screening::Data.new
-   data.start do |element|
-      element.title   = "title1"
-      element.content = "content1"
-   end
-   data.start do |element|
-      element.title   = "title2"
-      element.content = "content2"
-   end
-   p data                      #  => [{:title=>"title1", :content=>"content1"}, {:title=>"title2", :content=>"content2"}]
+    data = Screening::Data.new
+    data.start do |element|
+       element.title   = "title1"
+       element.content = "content1"
+    end
+    data.start do |element|
+       element.title   = "title2"
+       element.content = "content2"
+    end
+    p data                      #  => [{:title=>"title1", :content=>"content1"}, {:title=>"title2", :content=>"content2"}]
 
 ## Contributing
 
