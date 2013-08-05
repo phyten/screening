@@ -15,6 +15,7 @@ And then execute:
     $ bundle
 
 ## Usage
+write down:
 
     data = Screening::Data.new
     data.start do |element|
