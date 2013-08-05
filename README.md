@@ -36,6 +36,7 @@ if you want to classify data,
 ## TODO
 1. Complex classification (ex.Proc with many symbol.)
 2. If you omit elements, they are moved to "garbage".
+3. Binding attributes.
     
 ## Contributing
 
