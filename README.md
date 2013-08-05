@@ -33,6 +33,10 @@ if you want to classify data,
     data.classify(:high, :title, lambda{|e| e == "content2"})
     p data.high  # => [{:title=>"title2", :content=>"content2"}]
 
+## TODO
+1. Complex classification (ex.Proc with many symbol.)
+2. If you omit elements, they are moved to "garbage".
+    
 ## Contributing
 
 1. Fork it
