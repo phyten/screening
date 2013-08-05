@@ -6,6 +6,8 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
+if you use a bundler,
+
     gem 'screening', :git => 'git://github.com/phyten/screening.git'
 
 And then execute:
