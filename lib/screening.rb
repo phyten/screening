@@ -67,7 +67,7 @@ module Screening
           self.__send__(grade).push(element)
         end
       end
-      self.__send__(grade).uniq!
+      self.__send__(grade).uniq! # Thinking
     end
     def push_with_statistics(*args)
       # override
