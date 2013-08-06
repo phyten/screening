@@ -27,12 +27,16 @@ module Screening
   class Data < Array
     # FIXME: add a method of garbage to this class
     include ArrayToSelfConvert
-    attr_accessor :binding_attributes
+    attr_accessor :binding_attributes, :garbage
     def start
       self.push(Screening::Statistics.new)
       yield(self.last)
     end
     def omit(target, block)
+      @garbage ||= []
+      self.each do |element|
+        @garbage.push(element) if block.call(element.__send__(target))
+      end
       self.delete_if {|element| block.call(element.__send__(target))}
     end
     def filter(target, paper)

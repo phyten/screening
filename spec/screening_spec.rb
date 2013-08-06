@@ -72,5 +72,10 @@ describe Screening do
         @data.bind({test: "test"})
       end.should raise_error
     end
+    it "should move to garbage by omitting" do
+      @data.omit(:title, lambda{|e| e == "fake"})
+      expect(@data).to have(3).screening_statistics
+      expect(@data.garbage).to have(1).screening_statistics
+    end
   end
 end
