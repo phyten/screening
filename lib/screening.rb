@@ -27,6 +27,7 @@ module Screening
   class Data < Array
     # FIXME: add a method of garbage to this class
     include ArrayToSelfConvert
+    attr_accessor :binding_attributes
     def start
       self.push(Screening::Statistics.new)
       yield(self.last)
@@ -73,6 +74,11 @@ module Screening
       # override
       args.each do |arg|
         if arg.is_a? Hash
+          if !@binding_attributes.nil? && @binding_attributes != []
+            arg.keys.each do |key|
+              raise "#{key} is NOT permitted." unless @binding_attributes.include?(key.to_sym)
+            end
+          end
           self.push_without_statistics(Screening::Statistics.new.merge!(arg))
         else
           raise "You cannot add elements except Hash(And this Hash is transformed into Screening::Statistics automatically.)."
@@ -82,6 +88,12 @@ module Screening
     end
     alias push_without_statistics push
     alias push push_with_statistics
+    def bind(attributes=[])
+      raise ArgumentError, "Permit only Array." unless attributes.is_a? Array
+      @binding_attributes ||= []
+      @binding_attributes.concat(attributes).uniq!
+      @binding_attributes
+    end
   end
 end
 

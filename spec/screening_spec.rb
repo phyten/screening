@@ -60,5 +60,17 @@ describe Screening do
       @data.omit(:title, lambda{|e| e == "fake"})
       expect(@data).to have(3).screening_statistics
     end
+    it "can bind attributes" do
+      @data.bind([:title, :pageview])
+      lambda do
+        @data.push({test: "test"})
+      end.should raise_error
+    end
+    it "should not bind attributes except Array" do
+      lambda do
+        @data.bind("String")
+        @data.bind({test: "test"})
+      end.should raise_error
+    end
   end
 end
