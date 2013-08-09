@@ -37,6 +37,10 @@ describe Screening do
       expect(union_data).to be_a_kind_of Screening::Data
       expect(union_data).to have(5).screening_statistics
     end
+    it "should transform into Array" do
+      data_array = @data.to_a
+      expect(data_array).not_to be_a_kind_of Screening::Data
+    end
   end
   describe "Screening::Statistics" do
     it "should be Screening::Statistics" do        
