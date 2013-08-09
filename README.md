@@ -16,7 +16,7 @@ And then execute:
 
 ## Usage
 if you want to collect data,
-    ```ruby
+
     data = Screening::Data.new
     data.start do |element|
        element.title   = "title1"
@@ -27,12 +27,12 @@ if you want to collect data,
        element.content = "content2"
     end
     p data   # => [{:title=>"title1", :content=>"content1"}, {:title=>"title2", :content=>"content2"}]
-    ```
+
 if you want to classify data,
-    ```ruby
+
     data.classify(:high, :title, lambda{|e| e == "content2"})
     p data.high  # => [{:title=>"title2", :content=>"content2"}]
-    ```
+
 ## TODO
 1. Complex classification (ex.Proc with many symbol.)
 2. If you omit elements, they are moved to "garbage".
