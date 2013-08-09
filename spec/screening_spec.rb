@@ -43,7 +43,7 @@ describe Screening do
     end
   end
   describe "Screening::Statistics" do
-    it "should be Screening::Statistics" do        
+    it "should be Screening::Statistics" do
       @data.each do |data|
         expect(data).to be_a_kind_of Screening::Statistics
       end     
