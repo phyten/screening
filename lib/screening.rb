@@ -25,7 +25,6 @@ end
 
 module Screening
   class Data < Array
-    # FIXME: add a method of garbage to this class
     include ArrayToSelfConvert
     attr_accessor :binding_attributes, :garbage
     def start
