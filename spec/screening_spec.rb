@@ -41,6 +41,10 @@ describe Screening do
       data_array = @data.to_a
       expect(data_array).not_to be_a_kind_of Screening::Data
     end
+    it "can make csv" do
+      data_csv = @data.to_csv
+      expect(data_csv).to be_a_kind_of String
+    end
   end
   describe "Screening::Statistics" do
     it "should be Screening::Statistics" do
