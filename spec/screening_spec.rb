@@ -25,6 +25,7 @@ describe Screening do
       expect(@data).to be_a_kind_of Screening::Data
     end
     it "should be able to have categories" do
+      # TODO
       @data.classify(:high, :pageview, lambda{|e| e > 1000 })
     end
     it "should union a Screening::Data with another Screening::Data" do
