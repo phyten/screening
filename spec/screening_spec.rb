@@ -1,8 +1,88 @@
 require 'spec_helper'
 
-describe Screening do
+
+describe Screening::Data do
   before do    
-    @data = Screening::Data.new    
+    @data = Screening::Data.new
+    @data.start do |element|
+      element.title        = "fake"
+      element.pageview     = 10000
+    end
+    @data.start do |element|
+      element.title        = "good"
+      element.pageview     = 10000
+    end
+    @data.start do |element|
+      element.title        = "good"
+      element.pageview     = 5000
+    end
+    @data.start do |element|
+      element.title        = "soso"
+      element.pageview     = 300
+    end    
+  end
+  subject {@data}
+  it {should be_a_kind_of Screening::Data}
+  describe "#classify" do
+    it "can classify Screening::Data by lambda function." do
+      @data.classify(:high, :pageview, lambda{|e| e > 1000 })
+      @data.high {should have(3).instance_of_ScreeningStatistics}
+    end
+  end
+  describe "#to_a" do
+    subject {@data.to_a}
+    it {should_not be_a_kind_of Screening::Data}
+    it {should be_a_kind_of Array}
+  end
+  describe "#start" do
+    it "can add an element" do
+      @data.start do |element|
+        element.title = "test"
+      end
+      expect(@data).to have(5).screening_statistics
+      new_data = @data.last
+      expect(new_data).to be_a_kind_of Screening::Statistics
+    end
+  end
+  describe "#to_csv" do
+    subject {@data.to_csv}
+    it {should be_a_kind_of String}
+  end
+  describe "#push" do
+    it "should be Screening::Statistics" do
+      @data.push({title: "adding element"})
+      expect(@data).to have(5).screening_statistics
+      new_data = @data.last
+      expect(new_data).to be_a_kind_of Screening::Statistics
+    end
+  end
+  describe "#omit" do
+    it "can exclude elements by lambda function" do
+      @data.omit(:title, lambda{|e| e == "fake"})
+      expect(@data).to have(3).screening_statistics
+    end
+    it "moves to garbage" do
+      @data.omit(:title, lambda{|e| e == "fake"})
+      expect(@data.garbage).to have(1).screening_statistics
+    end
+  end
+  describe "#bind" do
+    it "can bind attributes of elements" do
+      @data.bind([:title, :pageview])
+      expect {@data.push({test: "test"})}.to raise_error
+    end
+    it "should not bind attributes except Array" do
+      expect {@data.bind("String")}.to raise_error
+      expect {@data.bind({test: "test"})}.to raise_error
+    end
+  end
+  it "should not have element except Screening::Statistics" do
+    expect {@data.push("string")}.to raise_error "You cannot add elements except Hash(And this Hash is transformed into Screening::Statistics automatically.)."
+  end
+end
+describe "Screening::Data + Screening::Data" do
+  before do    
+    @data = Screening::Data.new
     @data.start do |element|
       element.title        = "fake"
       element.pageview     = 10000
@@ -19,82 +99,15 @@ describe Screening do
       element.title        = "soso"
       element.pageview     = 300
     end
+    @another_data = Screening::Data.new
+    @another_data.start do |element|
+      element.title = "another"
+      element.pageview = "20000"
+    end
+    @union_data = @data + @another_data
   end
-  describe "Screening::Data" do
-    it "should be Screening::Data" do
-      expect(@data).to be_a_kind_of Screening::Data
-    end
-    it "should be able to have categories" do
-      # TODO
-      @data.classify(:high, :pageview, lambda{|e| e > 1000 })
-    end
-    it "should union a Screening::Data with another Screening::Data" do
-      another_data = Screening::Data.new
-      another_data.start do |element|
-        element.title = "another"
-        element.pageview = "20000"
-      end
-      union_data = @data + another_data
-      expect(union_data).to be_a_kind_of Screening::Data
-      expect(union_data).to have(5).screening_statistics
-    end
-    it "should transform into Array" do
-      data_array = @data.to_a
-      expect(data_array).not_to be_a_kind_of Screening::Data
-    end
-    it "can make csv" do
-      data_csv = @data.to_csv
-      expect(data_csv).to be_a_kind_of String
-    end
-  end
-  describe "Screening::Statistics" do
-    it "should be Screening::Statistics" do
-      @data.each do |data|
-        expect(data).to be_a_kind_of Screening::Statistics
-      end     
-    end
-    it "should add an element by method 'start'" do
-      @data.start do |element|
-        element.title = "test"
-      end
-      expect(@data).to have(5).screening_statistics
-      new_data = @data.last
-      expect(new_data).to be_a_kind_of Screening::Statistics
-    end
-    it "should add an element by method default method 'push'" do
-      @data.push({title: "adding element"})
-      expect(@data).to have(5).screening_statistics
-      new_data = @data.last
-      expect(new_data).to be_a_kind_of Screening::Statistics
-    end
-    it "should not have element except Screening::Statistics" do
-      lambda do
-        @data.push("string")
-      end.should raise_error "You cannot add elements except Hash(And this Hash is transformed into Screening::Statistics automatically.)."
-      lambda do
-        @data.push({test: "the test"})
-      end.should_not raise_error
-    end
-    it "should omit elements by method 'omit'" do
-      @data.omit(:title, lambda{|e| e == "fake"})
-      expect(@data).to have(3).screening_statistics
-    end
-    it "can bind attributes" do
-      @data.bind([:title, :pageview])
-      lambda do
-        @data.push({test: "test"})
-      end.should raise_error
-    end
-    it "should not bind attributes except Array" do
-      lambda do
-        @data.bind("String")
-        @data.bind({test: "test"})
-      end.should raise_error
-    end
-    it "should move to garbage by omitting" do
-      @data.omit(:title, lambda{|e| e == "fake"})
-      expect(@data).to have(3).screening_statistics
-      expect(@data.garbage).to have(1).screening_statistics
-    end
-  end
+  subject {@union_data}
+  it {should be_a_kind_of Screening::Data}
+  it {should have(5).instance_of_ScreeningStatistics}
 end
+
