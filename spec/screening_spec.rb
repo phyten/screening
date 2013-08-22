@@ -49,7 +49,7 @@ describe Screening::Data do
     it {should be_a_kind_of String}
   end
   describe "#push" do
-    it "should be Screening::Statistics" do
+    it "pushes Screening::Statistics (not Hash)" do
       @data.push({title: "adding element"})
       expect(@data).to have(5).screening_statistics
       new_data = @data.last
