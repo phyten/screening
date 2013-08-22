@@ -38,6 +38,7 @@ if you want to classify data,
 2. If you omit elements, they are moved to "garbage".
 3. Binding attributes.
 4. Version management.
+5. Huge data.
     
 ## Contributing
 
