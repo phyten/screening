@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe Screening::Data do
   before do    
     @data = Screening::Data.new
