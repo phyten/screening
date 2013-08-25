@@ -37,7 +37,8 @@ if you want to classify data,
 1. Complex classification (ex.Proc with many symbol.)
 2. If you omit elements, they are moved to "garbage".
 3. Binding attributes.
-4. Version managemet.
+4. Version management.
+5. Huge data.
     
 ## Contributing
 
