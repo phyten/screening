@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 require "screening/version"
+require "active_support/all"
 
 module Screening
 end
