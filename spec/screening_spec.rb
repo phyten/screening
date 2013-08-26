@@ -75,6 +75,15 @@ describe Screening::Data do
       expect {@data.bind({test: "test"})}.to raise_error
     end
   end
+  describe "#filter" do
+    it "change elements by your Proc" do
+      expect {
+        @data.filter(:title, lambda do |e|
+                       e.gsub(/fake/, "true") || e
+                     end)
+      }.to change {@data[0].title}.from("fake").to("true")
+    end
+  end
   it "should not have element except Screening::Statistics" do
     expect {@data.push("string")}.to raise_error "You cannot add elements except Hash(And this Hash is transformed into Screening::Statistics automatically.)."
   end
