@@ -60,6 +60,7 @@ if you want NOT to make attributes of data changed,
 3. Binding attributes.
 4. Version management.
 5. Huge data.
+6. Output various files(csv, xls and others).
     
 ## Contributing
 
