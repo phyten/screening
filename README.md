@@ -29,9 +29,10 @@ if you want to collect data,
        element.title   = "fake"
        element.content = "fake content"
     end
-or
-    data.push({title: "title2", content: "content2"})
     
+or
+
+    data.push({title: "title2", content: "content2"})    
     p data   # => [{:title=>"title1", :content=>"content1"}, {:title=>"fake", :content=>"fake content"}, {:title=>"title2", :content=>"content2"}]
 
 if you want to classify data,
