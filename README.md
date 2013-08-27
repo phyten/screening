@@ -14,6 +14,9 @@ And then execute:
 
     $ bundle
 
+## History
+    Version 0.1.0  Beta Version
+    
 ## Usage
 if you want to collect data,
 
