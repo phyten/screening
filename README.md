@@ -58,6 +58,8 @@ if you want NOT to make attributes of data changed,
     data.bind([:title, :content])
     data.push({test: "test"})}   # => raise error
     
+And Screening::Data inherits Array class.So you can use it like Array!
+    
 ## TODO
 1. Complex classification(ex.Proc with many symbol.).
 2. If you omit elements, they are moved to "garbage".
