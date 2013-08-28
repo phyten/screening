@@ -13,9 +13,14 @@ if you use a bundler,
 And then execute:
 
     $ bundle
+    
+Or,
+
+    $ gem install screening
 
 ## History
     Version 0.1.0  Beta Version
+    Version 0.1.1  Readme is fixed.
     
 ## Usage
 if you want to collect data,
@@ -57,6 +62,8 @@ if you want NOT to make attributes of data changed,
 
     data.bind([:title, :content])
     data.push({test: "test"})}   # => raise error
+    
+And Screening::Data inherits Array class.So you can use it like Array!
     
 ## TODO
 1. Complex classification(ex.Proc with many symbol.).
