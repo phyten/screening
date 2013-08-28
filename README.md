@@ -13,6 +13,10 @@ if you use a bundler,
 And then execute:
 
     $ bundle
+    
+Or,
+
+    $ gem install screening
 
 ## History
     Version 0.1.0  Beta Version
