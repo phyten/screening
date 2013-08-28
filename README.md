@@ -20,6 +20,7 @@ Or,
 
 ## History
     Version 0.1.0  Beta Version
+    Version 0.1.1  Readme is fixed.
     
 ## Usage
 if you want to collect data,
